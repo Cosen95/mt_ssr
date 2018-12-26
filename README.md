@@ -1,6 +1,9 @@
-# mt_ssr
+# mt_ssr 
+## 基于nuxt实现的ssr电商管理后台
 
 > nuxt ssr mt_back_stage manage
+
+
 
 ## Build Setup
 
@@ -20,4 +23,3 @@ $ yarn run generate
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
-基于nuxt实现的ssr电商管理后台
