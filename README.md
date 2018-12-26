@@ -1,5 +1,4 @@
 # mt_ssr
-<<<<<<< HEAD
 
 > nuxt ssr mt_back_stage manage
 
@@ -21,6 +20,4 @@ $ yarn run generate
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
-=======
 基于nuxt实现的ssr电商管理后台
->>>>>>> f2ffd73b12473a62c9bd2a08dbfd387e946eca8f
