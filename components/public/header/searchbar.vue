@@ -19,37 +19,33 @@
             placeholder="搜索商家或地点"
             @focus="focus"
             @blur="blur"
+            @input="input"
           />
           <button class="el-button el-button--primary"><i class="el-icon-search" /></button>
           <dl 
             v-if="isHotPlace" 
             class="hotPlace">
             <dt>热门搜索</dt>
-            <dd>烧烤</dd>
-            <dd>烧烤</dd>
-            <dd>烧烤</dd>
-            <dd>烧烤</dd>
-            <dd>烧烤</dd>
-            <dd>烧烤</dd>
+            <dd 
+              v-for="(item,idx) in hotPlace" 
+              :key="idx">{{ item }}</dd>
           </dl>
           <dl 
             v-if="isSearchList" 
             class="searchList">
-            <dd>甜品</dd>
-            <dd>甜品</dd>
-            <dd>甜品</dd>
-            <dd>甜品</dd>
-            <dd>甜品</dd>
+            <dd 
+              v-for="(item,idx) in searchList" 
+              :key="idx">{{ item }}</dd>
           </dl>
         </div>
         <p class="suggest">
           <a href="#">上海迪士尼</a>
-          <a href="#">上海迪士尼</a>
-          <a href="#">上海迪士尼</a>
-          <a href="#">上海迪士尼</a>
-          <a href="#">上海迪士尼</a>
-          <a href="#">上海迪士尼</a>
-          <a href="#">上海迪士尼</a>
+          <a href="#">上海科技馆</a>
+          <a href="#">朱家角</a>
+          <a href="#">东方明珠</a>
+          <a href="#">城隍庙</a>
+          <a href="#">上海中心大厦</a>
+          <a href="#">佘山</a>
         </p>
         <ul class="nav">
           <li><nuxt-link
@@ -88,7 +84,9 @@ export default {
     data() {
         return {
             search: '',
-            isFocus: false
+            isFocus: false,
+            hotPlace: ['海底捞','上上谦'],
+            searchList: ['金山城市沙滩','碧海金沙']
         }
     },
     computed: {
@@ -103,11 +101,14 @@ export default {
         focus:function() {
             this.isFocus = true;
         },
-        blur: function() {
+        blur:function() {
             let self = this;
             setTimeout(function() {
                 self.isFocus = false
             },200)
+        },
+        input:function() {
+            // 请求接口获取查询列表
         }
     },
 }
