@@ -18,10 +18,12 @@ passport.use(new LocalStrategy(async function(username,password,done){
     }
 }))
 
+// 序列化
 passport.serializeUser(function(user,done){
     done(null,user)
 })
 
+// 反序列化
 passport.deserializeUser(function(user,done){
     return done(null,user)
 })
