@@ -1,6 +1,6 @@
 <template>
   <div class="m-geo">
-    <i class="el-icon-location" />上海市
+    <i class="el-icon-location" />{{ $store.state.geo.position.city }}
     <nuxt-link
       class="changeCity"
       to="/changeCity"
