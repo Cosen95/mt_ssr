@@ -13,11 +13,16 @@ const store = () => new Vuex.Store({
     actions: {
         async nuxtServerInit({ commit }, { req, app}) {
             //获取当前所在城市
-            const { status, data: { province, city }} = await app.$axios.get('../static/getPosition.json')
-            console.log(status,data);
+            const res = await app.$axios.get('https://www.easy-mock.com/mock/5c45c89ffb5b9a1c074671d5/getPosition')
+            const { data: { status, data }} = res;
+            const { province, city } = data;
             commit('geo/setPosition',status === 200 ? { province, city} : { province: '', city: '' })
             //获取菜单
-            const { status: menuStatus, data: { menu }} = await app.$axios.get('/geo/menu')
+            const menuRes = await app.$axios.get('https://www.easy-mock.com/mock/5c45c89ffb5b9a1c074671d5/getMenu')
+            console.log('获取菜单',menuRes.data)
+            const { data: { status: menuStatus, data: menuData }} = menuRes
+            const { menu } = menuData
+
             commit('home/setMenu', menuStatus === 200? menu:[])
         }
     }

@@ -5,34 +5,36 @@ let router = new Router({
     prefix: '/geo'
 })
 
-const sign = 'abcd'
-
 router.get('/getPosition', async(ctx) => {
-    let { status, data: { province,city }} = await axios.get(`http://cp-tools.cn/geo/getPosition?sign=${sign}`)
-    if(status === 200) {
-        ctx.body = {
-            province,
-            city
-        }
-    } else {
-        ctx.body = {
-            province: '',
-            city: ''
-        }
+    let res = await axios.get('https://www.easy-mock.com/mock/5c45c89ffb5b9a1c074671d5/getPosition')
+    ctx.body = {
+        res
     }
+    // if(status === 200) {
+    //     ctx.body = {
+    //         province,
+    //         city
+    //     }
+    // } else {
+    //     ctx.body = {
+    //         province: '',
+    //         city: ''
+    //     }
+    // }
 })
 
 router.get('/menu', async (ctx) => {
-    let { status, data: { menu }} = await axios.get(`http://cp-tools.cn/geo/menu?sign=${sign}`);
-    if(status === 200) {
-        ctx.body = {
-            menu
-        }
-    } else {
-        ctx.body = {
-            menu: []
-        }
-    }
+    let res = await axios.get('https://www.easy-mock.com/mock/5c45c89ffb5b9a1c074671d5/getMenu');
+    console.log('getMenu接口返回',res)
+    // if(status === 200) {
+    //     ctx.body = {
+    //         menu
+    //     }
+    // } else {
+    //     ctx.body = {
+    //         menu: []
+    //     }
+    // }
 })
 
 
