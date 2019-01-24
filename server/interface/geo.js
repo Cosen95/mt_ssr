@@ -1,5 +1,7 @@
 import Router from 'koa-router'
 import axios from './utils/axios'
+import Province from '../dbs/models/province'
+import Menu from '../dbs/models/menu'
 
 let router = new Router({
     prefix: '/geo'
@@ -24,17 +26,23 @@ router.get('/getPosition', async(ctx) => {
 })
 
 router.get('/menu', async (ctx) => {
+    const result = await Menu.findOne()
+    ctx.body = {
+        menu: result.menu
+    }
     let res = await axios.get('https://www.easy-mock.com/mock/5c45c89ffb5b9a1c074671d5/getMenu');
-    console.log('getMenu接口返回',res)
-    // if(status === 200) {
-    //     ctx.body = {
-    //         menu
-    //     }
-    // } else {
-    //     ctx.body = {
-    //         menu: []
-    //     }
-    // }
+})
+
+router.get('/province', async (ctx) => {
+    let province = await Province.find()
+    ctx.body = {
+        province: province.map(item => {
+            return {
+                id: item.id,
+                name: item.value[0]
+            }
+        })
+    }
 })
 
 

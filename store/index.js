@@ -18,12 +18,10 @@ const store = () => new Vuex.Store({
             const { province, city } = data;
             commit('geo/setPosition',status === 200 ? { province, city} : { province: '', city: '' })
             //获取菜单
-            const menuRes = await app.$axios.get('https://www.easy-mock.com/mock/5c45c89ffb5b9a1c074671d5/getMenu')
-            console.log('获取菜单',menuRes.data)
-            const { data: { status: menuStatus, data: menuData }} = menuRes
-            const { menu } = menuData
-
-            commit('home/setMenu', menuStatus === 200? menu:[])
+            // const menuRes = await app.$axios.get('https://www.easy-mock.com/mock/5c45c89ffb5b9a1c074671d5/getMenu')
+            const menuRes = await app.$axios.get('geo/menu')
+            const { data: { menu } } = menuRes
+            commit('home/setMenu', menu ? menu:[])
         }
     }
 })
