@@ -7,7 +7,8 @@ let router = new Router({prefix: '/search'})
 router.get('/top', async (ctx) => {
     try {
         let top = await Poi.find({
-            'name': new RegExp(ctx.query.input),
+            name: ctx.query.input,
+            // 'name': new RegExp(ctx.query.input),
             city: ctx.query.city
         })
         ctx.body = {
