@@ -39,13 +39,10 @@
           </dl>
         </div>
         <p class="suggest">
-          <a href="#">上海迪士尼</a>
-          <a href="#">上海科技馆</a>
-          <a href="#">朱家角</a>
-          <a href="#">东方明珠</a>
-          <a href="#">城隍庙</a>
-          <a href="#">上海中心大厦</a>
-          <a href="#">佘山</a>
+          <a
+            v-for="(item,idx) in $store.state.home.hotPlace.slice(0,5)"
+            :key="idx"
+            :href="'/products?keyword='+encodeURIComponent(item.name)">{{ item.name }}</a>
         </p>
         <ul class="nav">
           <li><nuxt-link
@@ -86,8 +83,8 @@ export default {
         return {
             search: '',
             isFocus: false,
-            hotPlace: ['海底捞','上上谦'],
-            searchList: ['金山城市沙滩','碧海金沙']
+            hotPlace: [],
+            searchList: []
         }
     },
     computed: {

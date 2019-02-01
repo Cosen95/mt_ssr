@@ -22,6 +22,14 @@ const store = () => new Vuex.Store({
             const menuRes = await app.$axios.get('geo/menu')
             const { data: { menu } } = menuRes
             commit('home/setMenu', menu ? menu:[])
+            // 获取热门景点
+            const hotPlaceRes = await app.$axios.get('search/hotPlace', {
+                params: {
+                    city: app.store.state.geo.position.city.replace('市','')
+                }
+            })
+            const { data: { result }} = hotPlaceRes
+            commit('home/setHotPlace',result ? result : [])
         }
     }
 })

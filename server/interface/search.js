@@ -5,7 +5,7 @@ import Poi from '../dbs/models/poi'
 let router = new Router({prefix: '/search'})
 
 router.get('/top', async (ctx) => {
-    try {
+    // try {
         let top = await Poi.find({
             name: ctx.query.input,
             // 'name': new RegExp(ctx.query.input),
@@ -21,20 +21,20 @@ router.get('/top', async (ctx) => {
             }),
             type: top.length ? top[0].type : ''
         }
-    } catch (e) {
-        ctx.body = {
-            code: -1,
-            top: []
-        }
-    }
+    // } catch (e) {
+    //     ctx.body = {
+    //         code: -1,
+    //         top: []
+    //     }
+    // }
 })
 
 router.get('/hotPlace', async (ctx) => {
     let city = ctx.store ? ctx.store.geo.position.city : ctx.query.city
-    try {
+    // try {
         let result = await Poi.find({
             city,
-            type: ctx.query.type || '景点'
+            // type: ctx.query.type || '景点'
         }).limit(10)
 
         ctx.body = {
@@ -46,12 +46,12 @@ router.get('/hotPlace', async (ctx) => {
                 }
             })
         }
-    } catch (e) {
-        ctx.body = {
-            code: -1,
-            result: []
-        }
-    }
+    // } catch (e) {
+    //     ctx.body = {
+    //         code: -1,
+    //         result: []
+    //     }
+    // }
 })
 
 export default router
